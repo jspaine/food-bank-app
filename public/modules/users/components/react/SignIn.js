@@ -7,37 +7,37 @@ import { signIn } from 'store/auth'
 import FoodbankLogo from '../../../common/components/FoodbankLogo'
 
 class SignIn extends React.Component {
-    constructor(props) {
-        super(props)
-        this.redirectIfAlreadySignedIn(this.props)
-        this.state = {
-            username: "",
-            password: ""
-        }
+  constructor(props) {
+    super(props)
+    this.redirectIfAlreadySignedIn(this.props)
+    this.state = {
+      username: "",
+      password: ""
     }
+  }
 
-    redirectIfAlreadySignedIn(props) {
-        if (props.auth && props.auth.user && props.auth.user._id) {
-            props.push('root')
-        }
+  redirectIfAlreadySignedIn(props) {
+    if (props.auth && props.auth.user && props.auth.user._id) {
+      props.push('root')
     }
+  }
 
-    onFieldChange = e => {
-        const {name, value} = e.target
-        this.setState({ [name]: value })
-    }
+  onFieldChange = e => {
+    const {name, value} = e.target
+    this.setState({ [name]: value })
+  }
 
-    onSubmit = (e) => {
-        e.preventDefault()
-        this.props.signIn(this.state.username, this.state.password)
-        this.setState({password: ""})
-    }
+  onSubmit = e => {
+    e.preventDefault()
+    this.props.signIn(this.state.username, this.state.password)
+    this.setState({password: ""})
+  }
 
-    componentWillReceiveProps = (nextProps) => {
-        this.redirectIfAlreadySignedIn(nextProps)
-    }
+  componentWillReceiveProps = nextProps => {
+    this.redirectIfAlreadySignedIn(nextProps)
+  }
 
-    render = () =>
+  render = () =>
         <section className="content">
             <div className="login-box">
                 <div className="login-logo">
@@ -82,15 +82,15 @@ class SignIn extends React.Component {
         </section>
 }
 
-const mapStateToProps = (state) => ({
-    auth: state.auth,
+const mapStateToProps = state => ({
+  auth: state.auth,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    signIn: (username, password) => {
-        dispatch(signIn({ username, password }))
-    },
-    push: route => dispatch(stateGo(route))
+const mapDispatchToProps = dispatch => ({
+  signIn: (username, password) => {
+    dispatch(signIn({ username, password }))
+  },
+  push: route => dispatch(stateGo(route))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

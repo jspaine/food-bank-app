@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('core')
   .component('dynamicView', {
@@ -31,4 +31,4 @@ export default angular.module('core')
       </div> <!-- section -->
     `
   })
-  .name;
+  .name

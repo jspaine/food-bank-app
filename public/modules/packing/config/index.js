@@ -1,1 +1,1 @@
-import './packing.client.routes';
+import './packing.client.routes'

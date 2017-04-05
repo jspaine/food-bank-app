@@ -1,2 +1,2 @@
-import './changeMedia';
-import './foodbank-logo';
+import './changeMedia'
+import './foodbank-logo'

@@ -1,4 +1,4 @@
-import './components';
-import './config';
-import './controllers';
-import './services';
+import './components'
+import './config'
+import './controllers'
+import './services'

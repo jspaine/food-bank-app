@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Table} from 'react-bootstrap'
 
-import {selectors} from '../../../store';
-import {loadCustomers} from '../../../store/customer';
+import {selectors} from '../../../store'
+import {loadCustomers} from '../../../store/customer'
 
 import ClientStatusLabel from '../../common/components/ClientStatusLabel'
 import Page from '../../common/components/Page'
@@ -12,11 +12,11 @@ const mapStateToProps = state => ({
   customers: selectors.getAllCustomers(state),
   loadingCustomers: selectors.loadingCustomers(state),
   loadCustomersError: selectors.loadCustomersError(state)
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadCustomers: () => dispatch(loadCustomers())
-});
+})
 
 class CustomerList extends Component {
   componentWillMount() {

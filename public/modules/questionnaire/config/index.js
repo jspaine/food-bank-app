@@ -1,1 +1,1 @@
-import './questionnaire.client.routes';
+import './questionnaire.client.routes'

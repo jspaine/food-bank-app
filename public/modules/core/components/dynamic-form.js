@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('core')
   .component('dynamicForm', {
@@ -104,4 +104,4 @@ export default angular.module('core')
       </div> <!-- section -->
     `
   })
-  .name;
+  .name

@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('media')
   .component('changeMedia', {
@@ -41,4 +41,4 @@ export default angular.module('media')
       </section>
     `
   })
-  .name;
+  .name

@@ -1,1 +1,1 @@
-import './schedule.client.routes';
+import './schedule.client.routes'

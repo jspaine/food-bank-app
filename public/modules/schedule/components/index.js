@@ -1,1 +1,1 @@
-import './schedules';
+import './schedules'

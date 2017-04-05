@@ -1,1 +1,1 @@
-import './settings.client.routes';
+import './settings.client.routes'

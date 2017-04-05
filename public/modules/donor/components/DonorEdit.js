@@ -24,18 +24,18 @@ const mapStateToProps = state => ({
   formData: selectors.getFormData(state),
   loadingFormData: selectors.loadingFormData(state),
   loadFormDataError: selectors.loadFormDataError(state)
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadDonor: (id, admin) => dispatch(loadDonor(id, admin)),
   saveDonor: (donor, admin) => dispatch(saveDonor(donor, admin)),
   loadFormData: () => {
-    dispatch(loadFoods());
-    dispatch(loadFields());
-    dispatch(loadSections());
+    dispatch(loadFoods())
+    dispatch(loadFields())
+    dispatch(loadSections())
   },
   push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+})
 
 class DonorEdit extends Component {
   constructor(props) {
@@ -50,8 +50,8 @@ class DonorEdit extends Component {
   }
 
   componentWillMount() {
-    this.props.loadDonor(this.props.donorId, this.isAdmin);
-    this.props.loadFormData();
+    this.props.loadDonor(this.props.donorId, this.isAdmin)
+    this.props.loadFormData()
   }
 
   componentWillReceiveProps(nextProps) {

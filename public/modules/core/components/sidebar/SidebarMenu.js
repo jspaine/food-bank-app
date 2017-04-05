@@ -1,7 +1,7 @@
 import React from 'react'
 import {sortBy} from 'lodash'
 import {react2angular} from 'react2angular'
-import angular from 'angular';
+import angular from 'angular'
 
 import SidebarMenuItem from './SidebarMenuItem'
 

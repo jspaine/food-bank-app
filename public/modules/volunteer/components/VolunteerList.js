@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {stateGo} from 'redux-ui-router';
+import {stateGo} from 'redux-ui-router'
 import {Table} from 'react-bootstrap'
 
-import {selectors} from '../../../store';
-import {loadVolunteers} from '../../../store/volunteer';
+import {selectors} from '../../../store'
+import {loadVolunteers} from '../../../store/volunteer'
 import ClientStatusLabel from '../../common/components/ClientStatusLabel'
 import Page from '../../common/components/Page'
 
@@ -14,12 +14,12 @@ const mapStateToProps = state => ({
   loadingVolunteers: selectors.loadingVolunteers(state),
   loadVolunteersError: selectors.loadVolunteersError(state),
   settings: state.settings.data,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadVolunteers: () => dispatch(loadVolunteers()),
   push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+})
 
 class VolunteerList extends Component {
   componentWillMount() {

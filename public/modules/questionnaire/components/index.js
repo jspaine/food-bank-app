@@ -1,2 +1,2 @@
-import './qtest';
-import './questionnaires';
+import './qtest'
+import './questionnaires'

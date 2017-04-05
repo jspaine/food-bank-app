@@ -2,7 +2,7 @@ import React from 'react'
 import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
-import angular from 'angular';
+import angular from 'angular'
 
 import CustomerList from './CustomerList'
 
@@ -31,4 +31,4 @@ export default angular.module('customer')
     }],
     template: '<div id="customer-list"></div>'
   })
-  .name;
+  .name

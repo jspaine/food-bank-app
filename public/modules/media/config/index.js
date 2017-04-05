@@ -1,1 +1,1 @@
-import './media.client.routes';
+import './media.client.routes'

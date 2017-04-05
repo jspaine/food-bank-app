@@ -1,8 +1,8 @@
-import angular from 'angular';
+import angular from 'angular'
 
-import {selectors} from 'store';
-import {loadCustomers} from 'store/customer';
-import {loadVolunteers} from 'store/volunteer';
+import {selectors} from 'store'
+import {loadCustomers} from 'store/customer'
+import {loadVolunteers} from 'store/volunteer'
 
 const mapStateToThis = state => ({
   _customers: selectors.getAllCustomers(state),
@@ -10,30 +10,30 @@ const mapStateToThis = state => ({
     vol.driver && vol.status === 'Active'),
   loading: selectors.loadingVolunteers(state) || selectors.loadingCustomers(state),
   error: selectors.loadCustomersError(state) || selectors.loadVolunteersError(state)
-});
+})
 
 const mapDispatchToThis = dispatch => ({
   loadCustomers : () => dispatch(loadCustomers()),
   loadVolunteers: () => dispatch(loadVolunteers())
-});
+})
 
 export default angular.module('driver')
   .component('driverRoutes', {
     controller: function($ngRedux) {
       this.$onInit = () => {
-        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this);
-        this.loadCustomers();
-        this.loadVolunteers();
-        this.prevState = {};
-      };
+        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this)
+        this.loadCustomers()
+        this.loadVolunteers()
+        this.prevState = {}
+      }
 
       this.$doCheck = () => {
         if (!this.loading && this.prevState.loading) {
-          this.customers = [...this._customers];
+          this.customers = [...this._customers]
         }
-      };
+      }
 
-      this.$onDestroy = () => this.unsubscribe();
+      this.$onDestroy = () => this.unsubscribe()
     },
     template: `
       <!-- Content header (Page header) -->
@@ -122,4 +122,4 @@ export default angular.module('driver')
       </section><!-- /.content -->
     `
   })
-  .name;
+  .name

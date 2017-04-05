@@ -4,11 +4,11 @@ import {stateGo} from 'redux-ui-router'
 import set from 'lodash/set'
 
 import {Form} from '../../common/services/form'
-import {selectors} from '../../../store';
-import {saveDonor} from '../../../store/donor';
-import {loadFields} from '../../../store/field';
-import {loadFoods} from '../../../store/food-category';
-import {loadSections} from '../../../store/section';
+import {selectors} from '../../../store'
+import {saveDonor} from '../../../store/donor'
+import {loadFields} from '../../../store/field'
+import {loadFoods} from '../../../store/food-category'
+import {loadSections} from '../../../store/section'
 
 import Page from '../../common/components/Page'
 import DynamicForm from '../../common/components/DynamicForm'
@@ -22,17 +22,17 @@ const mapStateToProps = state => ({
   loadingFormData: selectors.loadingFormData(state),
   loadFormDataError: selectors.loadFormDataError(state),
   settings: state.settings.data,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   saveDonor: donor => dispatch(saveDonor(donor)),
   loadFormData: () => {
-    dispatch(loadFoods());
-    dispatch(loadFields());
-    dispatch(loadSections());
+    dispatch(loadFoods())
+    dispatch(loadFields())
+    dispatch(loadSections())
   },
   push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+})
 
 class DonorCreate extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class DonorCreate extends Component {
   }
 
   componentWillMount() {
-    this.props.loadFormData();
+    this.props.loadFormData()
   }
 
   componentWillReceiveProps(nextProps) {

@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('food')
   .component('foodList', {
@@ -180,4 +180,4 @@ export default angular.module('food')
       </section><!-- /.content -->
     `
   })
-  .name;
+  .name

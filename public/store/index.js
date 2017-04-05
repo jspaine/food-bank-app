@@ -1,21 +1,21 @@
-import {combineReducers} from 'redux';
-import {router} from 'redux-ui-router';
-import merge from 'lodash/merge';
+import {combineReducers} from 'redux'
+import {router} from 'redux-ui-router'
+import merge from 'lodash/merge'
 
 import app from './app'
-import auth from './auth';
-import customer, {selectors as customerSelectors} from './customer';
-import donation, {selectors as donationSelectors} from './donation';
-import donor, {selectors as donorSelectors} from './donor';
-import field, {selectors as fieldSelectors} from './field';
-import foodCategory, {selectors as foodCategorySelectors} from './food-category';
-import foodItem, {selectors as foodItemSelectors} from './food-item';
-import location, {selectors as locationSelectors} from './location';
-import media from './media';
-import questionnaire, {selectors as questionnaireSelectors} from './questionnaire';
-import section, {selectors as sectionSelectors} from './section';
-import settings from './settings';
-import volunteer, {selectors as volunteerSelectors} from './volunteer';
+import auth from './auth'
+import customer, {selectors as customerSelectors} from './customer'
+import donation, {selectors as donationSelectors} from './donation'
+import donor, {selectors as donorSelectors} from './donor'
+import field, {selectors as fieldSelectors} from './field'
+import foodCategory, {selectors as foodCategorySelectors} from './food-category'
+import foodItem, {selectors as foodItemSelectors} from './food-item'
+import location, {selectors as locationSelectors} from './location'
+import media from './media'
+import questionnaire, {selectors as questionnaireSelectors} from './questionnaire'
+import section, {selectors as sectionSelectors} from './section'
+import settings from './settings'
+import volunteer, {selectors as volunteerSelectors} from './volunteer'
 
 // Updates an entity cache in response to any action with response.entities.
 const entities = (state = {
@@ -31,11 +31,11 @@ const entities = (state = {
   volunteers: {}
 }, action) => {
   if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities);
+    return merge({}, state, action.response.entities)
   }
 
-  return state;
-};
+  return state
+}
 
 export default combineReducers({
   entities,
@@ -54,7 +54,7 @@ export default combineReducers({
   section,
   settings,
   volunteer
-});
+})
 
 export const selectors = {
   getFormData: state => ({
@@ -124,4 +124,4 @@ export const selectors = {
   loadVolunteersError: state => volunteerSelectors.loadError(state.volunteer),
   savingVolunteers: state => volunteerSelectors.saving(state.volunteer),
   saveVolunteersError: state => volunteerSelectors.saveError(state.volunteer),
-};
+}

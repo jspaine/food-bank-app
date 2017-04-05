@@ -1,14 +1,14 @@
-import angular from 'angular';
-import {stateGo} from 'redux-ui-router';
+import angular from 'angular'
+import {stateGo} from 'redux-ui-router'
 
-import {selectors} from '../../../store';
+import {selectors} from '../../../store'
 import {
   loadQuestionnaires,
   saveQuestionnaire,
   deleteQuestionnaire
-} from '../../../store/questionnaire';
-import {loadFields, saveField, deleteField} from '../../../store/field';
-import {loadSections, saveSection, deleteSection} from '../../../store/section';
+} from '../../../store/questionnaire'
+import {loadFields, saveField, deleteField} from '../../../store/field'
+import {loadSections, saveSection, deleteSection} from '../../../store/section'
 
 const mapStateToThis = state => ({
   user: state.auth.user,
@@ -25,58 +25,58 @@ const mapStateToThis = state => ({
   savingSection: selectors.savingSection(state),
   saveSectionError: selectors.saveSectionError(state),
   settings: state.settings.data,
-});
+})
 
 const mapDispatchToThis = dispatch => ({
   loadQuestionnaires: () => dispatch(loadQuestionnaires()),
   saveQuestionnaire: questionnaire => dispatch(saveQuestionnaire(questionnaire)),
   deleteQuestionnaire: questionnaire => dispatch(deleteQuestionnaire(questionnaire._id)),
   loadFormData: () => {
-    dispatch(loadFields());
-    dispatch(loadSections());
+    dispatch(loadFields())
+    dispatch(loadSections())
   },
   saveField: field => dispatch(saveField(field)),
   deleteField: field => dispatch(deleteField(field._id)),
   _saveSection: section => dispatch(saveSection(section)),
   deleteSection: section => dispatch(deleteSection(section._id)),
   push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+})
 
 export default angular.module('questionnaire')
   .component('questionnaires', {
     controller: function($ngRedux) {
-       this.$onInit = () => {
-        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this);
-        this.questionnairesModel = [];
-        this.questionnaireModel = {};
-        this.sectionModel = {};
-        this.fieldModel = {};
-        this.formDataModel = {};
-        this.prevState = {};
-        this.loadFormData();
-        this.loadQuestionnaires();
-      };
+      this.$onInit = () => {
+        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this)
+        this.questionnairesModel = []
+        this.questionnaireModel = {}
+        this.sectionModel = {}
+        this.fieldModel = {}
+        this.formDataModel = {}
+        this.prevState = {}
+        this.loadFormData()
+        this.loadQuestionnaires()
+      }
 
       this.$doCheck = () => {
         if (!this.loadingFormData && this.prevState.loadingFormData) {
-          if (this.loadFormDataError) this.error = this.loadFormDataError;
-          else this.formDataModel = {...this.formData};
+          if (this.loadFormDataError) this.error = this.loadFormDataError
+          else this.formDataModel = {...this.formData}
         }
 
         if (!this.loadingQuestionnaires && this.prevState.loadingQuestionnaires) {
-          if (this.loadQuestionnairesError) this.error = this.loadQuestionnairesError;
+          if (this.loadQuestionnairesError) this.error = this.loadQuestionnairesError
           else this.questionnairesModel = [...this.questionnaires]
         }
 
-        this.prevState = {...this};
-      };
+        this.prevState = {...this}
+      }
 
       this.saveSection = section => {
         console.log('section', section)
         this._saveSection(section)
       }
 
-      this.$onDestroy = () => this.unsubscribe();
+      this.$onDestroy = () => this.unsubscribe()
     },
     template: `
       <!-- Content header (Page header) -->
@@ -480,4 +480,4 @@ export default angular.module('questionnaire')
       </section><!-- /.content -->
     `
   })
-  .name;
+  .name

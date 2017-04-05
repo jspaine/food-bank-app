@@ -1,5 +1,5 @@
-import './css/core.css';
-import './directives';
-import './services';
-import './components';
-import './config';
+import './css/core.css'
+import './directives'
+import './services'
+import './components'
+import './config'

@@ -1,2 +1,2 @@
-import './capitalize.filter';
-import './split-camel-case.filter';
+import './capitalize.filter'
+import './split-camel-case.filter'
