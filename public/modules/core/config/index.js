@@ -1,1 +1,1 @@
-import './core.client.routes';
+import './core.client.routes'

@@ -1,2 +1,2 @@
-import './on-last-repeat.directive';
-import './treeview.directive';
+import './on-last-repeat.directive'
+import './treeview.directive'

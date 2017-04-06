@@ -1,1 +1,1 @@
-import './settings.client.controller';
+import './settings.client.controller'

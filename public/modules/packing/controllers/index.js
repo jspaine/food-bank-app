@@ -1,1 +1,1 @@
-import './packing.client.controller';
+import './packing.client.controller'

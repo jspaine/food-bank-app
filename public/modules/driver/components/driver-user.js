@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('driver')
   .component('driverUser', {
@@ -125,4 +125,4 @@ export default angular.module('driver')
       </section><!-- /.content -->
     `
   })
-  .name;
+  .name

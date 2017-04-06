@@ -1,2 +1,2 @@
-import './food-list';
-import './food-list-react';
+import './food-list'
+import './food-list-react'

@@ -1,1 +1,1 @@
-import './packing-list';
+import './packing-list'

@@ -1,25 +1,25 @@
-import angular from 'angular';
+import angular from 'angular'
 import React, {Component} from 'react'
 import {Provider, connect} from 'react-redux'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
 
-import {loadSettings} from '../../../store/settings';
+import {loadSettings} from '../../../store/settings'
 import {loadMedia} from '../../../store/media'
 import Navbar from './navbar/Navbar'
 
 const mapStateToProps = state => ({
-	auth: state.auth,
+  auth: state.auth,
   settings: state.settings.data,
   fetchingSettings: state.settings.fetching,
   media: state.media.data,
   fetchingMedia: state.media.fetching
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadSettings: () => dispatch(loadSettings()),
   loadMedia: () => dispatch(loadMedia())
-});
+})
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -69,4 +69,4 @@ export const old = angular.module('core')
       }
     }
   })
-  .name;
+  .name

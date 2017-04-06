@@ -1,54 +1,54 @@
-import angular from 'angular';
-import {stateGo} from 'redux-ui-router';
+import angular from 'angular'
+import {stateGo} from 'redux-ui-router'
 
-import {selectors} from '../../../store';
-import {loadFoods} from '../../../store/food-category';
-import {saveFoodItem} from '../../../store/food-item';
+import {selectors} from '../../../store'
+import {loadFoods} from '../../../store/food-category'
+import {saveFoodItem} from '../../../store/food-item'
 
 const mapStateToThis = state => ({
-	foodItems: selectors.getAllFoodItems(state),
+  foodItems: selectors.getAllFoodItems(state),
   foodCategories: selectors.getAllFoods(state),
   loadingFoods: selectors.loadingFoods(state),
   loadFoodsError: selectors.loadFoodsError(state)
-});
+})
 
 const mapDispatchToThis = dispatch => ({
   loadFoods: () => dispatch(loadFoods()),
   _saveFood: (categoryId, foodItem) => dispatch(saveFoodItem(categoryId, foodItem)),
-	push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+  push: (route, params, options) => dispatch(stateGo(route, params, options))
+})
 
 
 export default angular.module('schedule')
   .component('schedules', {
     controller: function($ngRedux) {
       this.$onInit = () => {
-        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this);
-        this.foodItemsModel = [];
-        this.prevState = {};
-        this.loadFoods();
-      };
+        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this)
+        this.foodItemsModel = []
+        this.prevState = {}
+        this.loadFoods()
+      }
 
       this.$doCheck = () => {
         if (!this.loadingFoods && this.prevState.loadingFoods) {
           this.foodItemsModel = this.foodItems.map(item => {
             if (item.startDate)
               return {...item, startDate: new Date(item.startDate)}
-            return item;
+            return item
           })
         }
-        this.prevState = {...this};
-      };
+        this.prevState = {...this}
+      }
 
       this.saveFood = food => {
         const category = this.foodCategories.find(cat =>
           cat.items.find(item => item._id === food._id)
-        );
+        )
 
-        this._saveFood(category._id, food);
-      };
+        this._saveFood(category._id, food)
+      }
 
-      this.$onDestroy = () => this.unsubscribe();
+      this.$onDestroy = () => this.unsubscribe()
     },
     template: `
       <!-- Content header (Page header) -->
@@ -132,4 +132,4 @@ export default angular.module('schedule')
       </section><!-- /.content -->
     `
   })
-  .name;
+  .name

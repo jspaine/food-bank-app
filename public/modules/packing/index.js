@@ -1,3 +1,3 @@
-import './components';
-import './config';
-import './controllers';
+import './components'
+import './config'
+import './controllers'

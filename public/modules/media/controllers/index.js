@@ -1,1 +1,1 @@
-import './media.client.controller';
+import './media.client.controller'

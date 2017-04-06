@@ -1,28 +1,28 @@
-import angular from 'angular';
+import angular from 'angular'
 
-import {selectors} from 'store';
-import {loadVolunteers} from 'store/volunteer';
+import {selectors} from 'store'
+import {loadVolunteers} from 'store/volunteer'
 
 const mapStateToThis = state => ({
   drivers: selectors.getAllVolunteers(state).filter(vol =>
     vol.driver && vol.status === 'Active'),
   loading: selectors.loadingVolunteers(state)
-});
+})
 
 const mapDispatchToThis = dispatch => ({
   loadVolunteers: () => dispatch(loadVolunteers())
-});
+})
 
 export default angular.module('driver')
   .component('driverAdmin', {
     controller: function($ngRedux) {
       this.$onInit = () => {
-        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this);
+        this.unsubscribe = $ngRedux.connect(mapStateToThis, mapDispatchToThis)(this)
 
-        this.loadVolunteers();
-      };
+        this.loadVolunteers()
+      }
 
-      this.$onDestroy = () => this.unsubscribe();
+      this.$onDestroy = () => this.unsubscribe()
     },
     template: `
       <!-- Content header (Page header) -->
@@ -84,4 +84,4 @@ export default angular.module('driver')
       </section><!-- /.content -->
     `
   })
-  .name;
+  .name

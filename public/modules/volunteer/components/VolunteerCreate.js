@@ -5,11 +5,11 @@ import set from 'lodash/set'
 import {utc} from 'moment'
 
 import {Form} from '../../common/services/form'
-import {selectors} from '../../../store';
-import {saveVolunteer} from '../../../store/volunteer';
-import {loadFields} from '../../../store/field';
-import {loadFoods} from '../../../store/food-category';
-import {loadSections} from '../../../store/section';
+import {selectors} from '../../../store'
+import {saveVolunteer} from '../../../store/volunteer'
+import {loadFields} from '../../../store/field'
+import {loadFoods} from '../../../store/food-category'
+import {loadSections} from '../../../store/section'
 
 import Page from '../../common/components/Page'
 import DynamicForm from '../../common/components/DynamicForm'
@@ -23,17 +23,17 @@ const mapStateToProps = state => ({
   loadingFormData: selectors.loadingFormData(state),
   loadFormDataError: selectors.loadFormDataError(state),
   settings: state.settings.data,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   saveVolunteer: volunteer => dispatch(saveVolunteer(volunteer)),
   loadFormData: () => {
-    dispatch(loadFoods());
-    dispatch(loadFields());
-    dispatch(loadSections());
+    dispatch(loadFoods())
+    dispatch(loadFields())
+    dispatch(loadSections())
   },
   push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+})
 
 class VolunteerCreate extends Component {
   constructor(props) {
@@ -96,7 +96,7 @@ class VolunteerCreate extends Component {
     this.setState({volunteerModel})
   }
 
-  isMinor = (dateOfBirth) => utc().diff(dateOfBirth, 'years') < 18
+  isMinor = dateOfBirth => utc().diff(dateOfBirth, 'years') < 18
 
   render() {
     const {volunteerForm, volunteerModel, error} = this.state

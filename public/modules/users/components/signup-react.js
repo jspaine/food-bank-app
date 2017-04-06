@@ -2,7 +2,7 @@ import React from 'react'
 import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
-import angular from 'angular';
+import angular from 'angular'
 
 import SignUp from './react/SignUp'
 
@@ -30,4 +30,4 @@ export default angular.module('users')
     },
     template: '<div id="sign-up"></div>'
   })
-  .name;
+  .name

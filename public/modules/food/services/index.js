@@ -1,1 +1,1 @@
-import './food.client.service';
+import './food.client.service'

@@ -5,13 +5,13 @@ import {stateGo} from 'redux-ui-router'
 import SidebarMenu from './SidebarMenu'
 
 const mapStateToProps = state => ({
-	auth: state.auth,
+  auth: state.auth,
   menu: state.app.menu,
-	route: state.router.currentState.name
-});
+  route: state.router.currentState.name
+})
 
 const mapDispatchToProps = dispatch => ({
-	push: route => dispatch(stateGo(route))
+  push: route => dispatch(stateGo(route))
 })
 
 const Sidebar = ({

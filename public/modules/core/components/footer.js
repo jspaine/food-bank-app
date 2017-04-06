@@ -6,7 +6,7 @@ import {AppContainer} from 'react-hot-loader'
 
 const mapStateToProps = state => ({
   settings: state.settings.data,
-});
+})
 
 const FooterComponent = ({settings}) => (
   <div>
@@ -45,4 +45,4 @@ export const old = angular.module('core')
       }
     }
   })
-  .name;
+  .name

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {AppContainer} from 'react-hot-loader'
-import angular from 'angular';
+import angular from 'angular'
 
 import Sidebar from './sidebar/Sidebar'
 
@@ -30,4 +30,4 @@ export const old = angular.module('core')
       }
     }
   })
-  .name;
+  .name

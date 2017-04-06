@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('users')
   .component('forgotPassword', {
@@ -28,4 +28,4 @@ export default angular.module('users')
       </section>
     `
   })
-  .name;
+  .name

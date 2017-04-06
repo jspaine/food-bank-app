@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {react2angular} from 'react2angular'
-import angular from 'angular';
+import angular from 'angular'
 
 const mapStateToProps = state => ({
   settings: state.settings.data,
@@ -19,5 +19,5 @@ const FoodbankLogo = connect(mapStateToProps)(FoodbankLogoComponent)
 export default FoodbankLogo
 
 export const old = angular.module('media')
-	.component('foodbankLogo', react2angular(FoodbankLogo))
-	.name;
+  .component('foodbankLogo', react2angular(FoodbankLogo))
+  .name

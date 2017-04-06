@@ -1,1 +1,1 @@
-import './ng-thumb.directive';
+import './ng-thumb.directive'

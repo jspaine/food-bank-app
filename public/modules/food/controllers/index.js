@@ -1,2 +1,2 @@
-import './food.client.controller';
-import './food.client.controller-react';
+import './food.client.controller'
+import './food.client.controller-react'

@@ -1,7 +1,7 @@
-import angular from 'angular';
+import angular from 'angular'
 
-export default angular.module('core').filter('unsafe', unsafe).name;
+export default angular.module('core').filter('unsafe', unsafe).name
 
-	function unsafe($sce) {
-		return $sce.trustAsHtml;
-	}
+function unsafe($sce) {
+  return $sce.trustAsHtml
+}

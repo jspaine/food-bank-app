@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {stateGo} from 'redux-ui-router';
+import {stateGo} from 'redux-ui-router'
 import {utc} from 'moment'
 import set from 'lodash/set'
 import {Table} from 'react-bootstrap'
@@ -23,13 +23,13 @@ const mapStateToProps = state => ({
   getDonor: selectors.getOneDonor(state),
   donorId: state.router.currentParams.donorId,
   settings: state.settings.data
-});
+})
 
 const mapDispatchToProps = dispatch => ({
   loadDonor: (id, admin) => dispatch(loadDonor(id, admin)),
   deleteDonor: id => dispatch(deleteDonor(id)),
   push: (route, params, options) => dispatch(stateGo(route, params, options))
-});
+})
 
 class DonorView extends Component {
   constructor(props) {
@@ -145,7 +145,7 @@ class DonorView extends Component {
                     )}
                     {!donorModel.donations.length &&
                       <tr>
-                        <td className="text-center" colspan="5">This donor hasn't made any donations yet.</td>
+                        <td className="text-center" colSpan="5">This donor hasn't made any donations yet.</td>
                       </tr>
                     }
                   </tbody>

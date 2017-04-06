@@ -5,7 +5,7 @@ import FoodbankLogo from '../../common/components/FoodbankLogo'
 
 const mapStateToProps = state => ({
   settings: state.settings.data
-});
+})
 
 const CustomerCreateSuccess = ({settings}) =>
   <section className="row text-center">

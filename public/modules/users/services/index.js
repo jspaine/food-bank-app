@@ -1,1 +1,1 @@
-import './authentication.client.service';
+import './authentication.client.service'

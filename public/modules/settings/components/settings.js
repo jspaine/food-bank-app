@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('settings')
   .component('settings', {
@@ -30,4 +30,4 @@ export default angular.module('settings')
       </section>
     `
   })
-  .name;
+  .name

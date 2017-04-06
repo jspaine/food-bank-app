@@ -1,1 +1,1 @@
-import './Page';
+import './Page'

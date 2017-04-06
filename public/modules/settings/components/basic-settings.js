@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('settings')
   .component('basicSettings', {
@@ -123,4 +123,4 @@ export default angular.module('settings')
       </div>
     `
   })
-  .name;
+  .name

@@ -1,2 +1,2 @@
-import './basic-settings';
-import './settings';
+import './basic-settings'
+import './settings'

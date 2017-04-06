@@ -2,7 +2,7 @@ import React from 'react'
 import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
-import angular from 'angular';
+import angular from 'angular'
 
 import VolunteerList from './VolunteerList'
 
@@ -31,5 +31,5 @@ export default angular.module('volunteer')
     }],
     template: '<div id="volunteer-list"></div>'
   })
-  .name;
+  .name
 

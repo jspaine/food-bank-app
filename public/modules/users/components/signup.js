@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('users')
   .component('signup', {
@@ -94,4 +94,4 @@ export default angular.module('users')
       </section><!-- /.main-content -->
     `
   })
-  .name;
+  .name

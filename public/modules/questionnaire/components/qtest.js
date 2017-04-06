@@ -1,4 +1,4 @@
-import angular from 'angular';
+import angular from 'angular'
 
 export default angular.module('questionnaire')
   .component('qTest', {
@@ -44,4 +44,4 @@ export default angular.module('questionnaire')
       </section>
     `
   })
-  .name;
+  .name

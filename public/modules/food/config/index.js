@@ -1,1 +1,1 @@
-import './food.client.routes';
+import './food.client.routes'
