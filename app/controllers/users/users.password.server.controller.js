@@ -88,16 +88,19 @@ exports.forgot = function(req, res, next) {
         body: mail.toJSON()
       })
 
-      sg.API(request, function(error, response) {
-        if (error) {
-          console.log(error)
-          console.log(response.body.errors)
-        } else {
-          res.send({
-            message: 'An email has been sent to ' + user.email + ' with further instructions.'
-          })
-        }
-      })
+			sg.API(request, function(error, response) {
+				if (error) {
+					console.log(error);
+					console.log(response.body.errors);
+					res.status(500).send({
+						message: "Server Error"
+					});
+				} else {
+					res.send({
+						message: 'An email has been sent to ' + user.email + ' with further instructions.'
+					});
+				}
+			});
 
       /*var smtpTransport = nodemailer.createTransport(config.mailer.options);
       var mailOptions = {
