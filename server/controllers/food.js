@@ -99,11 +99,10 @@ export default {
 
     const savedFood = await Food.findByIdAndUpdate(
       id,
-      {$pull: {items: {_id: req.itemId}}},
-      {new: true}
+      {$pull: {items: {_id: req.itemId}}}
     )
 
-    res.json(savedFood)
+    res.json({_id: req.itemId})
   },
 
   /**
