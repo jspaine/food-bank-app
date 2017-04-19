@@ -101,7 +101,7 @@ class FoodItems extends React.Component {
           <h3 className='box-title'>Foods</h3>
         </div>
         <div style={{ display: 'inline-block', float: 'right', marginRight: '10px' }}>
-          <Button onClick={this.openFoodAddEditModal} className='btn-success' style={{ color: 'white', width: '100px' }}>New</Button>
+          <Button onClick={this.openFoodAddEditModal} className='btn-success' disabled={this.props.foodCategories.length === 0} style={{ color: 'white', width: '100px' }}>Add</Button>
         </div>
         <div style={{ display: 'inline-block', float: 'right', marginRight: '10px' }}>
           {props.components.searchPanel}
@@ -172,7 +172,10 @@ class FoodItems extends React.Component {
     const tableOptions = {
       toolBar: this.createCustomToolBar,
       defaultSortName: 'name',
-      defaultSortOrder: 'asc'
+      defaultSortOrder: 'asc',
+      noDataText: (this.props.foodCategories.length === 0)
+        ? 'No foods in inventory. Add a category prior to adding a food' 
+        : 'No foods in inventory'
     }
     return (
       <div className="box">
