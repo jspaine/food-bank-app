@@ -7,9 +7,6 @@ import Autosuggest from 'react-bootstrap-autosuggest'
 import { selectors } from 'store'
 import { saveFoodItem, deleteFoodItem, clearFlags } from '../../food-item-reducer'
 
-import NewFoodItem from './NewFoodItem'
-import FoodItem from './FoodItem'
-
 class FoodItems extends React.Component {
 
   constructor(props) {
