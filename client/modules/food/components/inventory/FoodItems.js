@@ -100,7 +100,7 @@ class FoodItems extends React.Component {
           <h3 className='box-title'>Foods</h3>
         </div>
         <div style={{ display: 'inline-block', float: 'right', marginRight: '10px' }}>
-          <Button onClick={this.openModal} className='btn-success' disabled={this.props.foodCategories.length === 0} style={{ color: 'white', width: '100px' }}>Add</Button>
+          <Button onClick={this.openModal} className='btn-success' disabled={this.props.foodCategories.length === 0} style={{ color: 'white', width: '200px' }}>Add to Inventory</Button>
         </div>
         <div style={{ display: 'inline-block', float: 'right', marginRight: '10px' }}>
           {props.components.searchPanel}
