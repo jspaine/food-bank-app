@@ -14,7 +14,22 @@ exports.signup = async function(req, res) {
     displayName: `${req.body.firstName} ${req.body.lastName}`
   })
 
-  await user.save()
+  try {
+    await user.save()
+  } catch (error) {
+    if (error.code === 11000) {
+      const response = {
+        name: 'Unique key error',
+        message: 'A unique key error occured', 
+        errors: {username: {message: 'Username already taken'}}
+    }
+      return res.status(400).json({error: response})
+    } else if (error.name === 'ValidationError') {
+      return res.status(400).json({error})
+    } else {
+      return res.status(500).json({error})
+    }
+  }
 
   user.password = undefined
   user.salt = undefined
