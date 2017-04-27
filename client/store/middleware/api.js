@@ -90,6 +90,8 @@ export default store => next => action => {
           console.log(errorMessage)
       } else if (error.message) {
         errorMessage = error.message
+      } else if (error.errmsg) {
+        errorMessage = error.errmsg
       } else {
         errorMessage = "The server responded with an error"
       }
