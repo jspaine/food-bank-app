@@ -22,7 +22,8 @@ class SignUp extends React.Component {
       lastName: "",
       email: "",
       username: "",
-      password: ""
+      password: "",
+      passwordConfirm: ""
     }
   }
 
@@ -139,9 +140,26 @@ class SignUp extends React.Component {
           placeholder="Password"
           icon="lock"
           required
+        />        
+        <FieldGroup
+          name="passwordConfirm"
+          type="password"
+          onChange={this.onFieldChange}
+          value={this.state.passwordConfirm}
+          placeholder="Confirm Password"
+          icon="lock"
+          required
         />
+        {this.state.password !== this.state.passwordConfirm &&
+          <div className="alert alert-danger">Passwords do not match</div>
+        }
         <div className="text-center form-group">
-          <button type="submit" className="btn btn-flat btn-primary" onClick={this.onSubmit}>Sign up</button>&nbsp; or&nbsp;
+          <button type="submit" className="btn btn-flat btn-primary" 
+            onClick={this.onSubmit}
+            disabled={this.state.password !== this.state.passwordConfirm}>
+            Sign up
+          </button>
+          <br/><br/>Already have an account?&nbsp;&nbsp;
           <Link to="/users/signin">Sign in</Link>
         </div>
       </LoginBox>
