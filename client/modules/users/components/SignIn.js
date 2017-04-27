@@ -68,7 +68,9 @@ class SignIn extends React.Component {
           icon="lock"
         />
         <div className="pull-right form-group">
-          <button className="btn btn-primary btn-flat" onClick={this.onSubmit}>Sign in</button>&nbsp; or&nbsp;
+          <button className="btn btn-primary btn-flat" onClick={this.onSubmit}
+            disabled={!this.state.username || !this.state.password}>Sign in
+          </button>&nbsp; or&nbsp;
           <Link to="/users/signup">Sign up</Link>
         </div>
         <div className="form-group">
