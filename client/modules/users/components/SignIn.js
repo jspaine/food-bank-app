@@ -50,7 +50,7 @@ class SignIn extends React.Component {
         heading="Sign in to start your session"
         formName="loginForm"
         loading={this.props.auth.fetching}
-        error={this.props.auth.signinError}
+        error={this.props.auth.error}
       >
         <FieldGroup
           name="username"

@@ -64,7 +64,7 @@ class SignUp extends React.Component {
         heading="Register a new membership"
         formName="registerForm"
         loading={this.props.auth.fetching}
-        error={this.props.auth.signupError}
+        error={this.props.auth.error}
       >
         <FormGroup controlId="accountType">
           <ControlLabel>Please select an account to create</ControlLabel>
