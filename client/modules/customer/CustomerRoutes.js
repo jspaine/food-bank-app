@@ -14,25 +14,15 @@ const mapStateToProps = state => ({
   user: state.auth.user
 })
 
-const Customers = ({match, user}) => {
-  if (user && user.roles.find(role => role === 'admin')) {
-    return <Switch>
-        <Route path={`${match.url}`} exact component={CustomerList} />
-        <Route path={`${match.url}/create/success`} component={ClientCreateSuccess} />
-        <Route path={`${match.url}/create`} component={CustomerCreate} />
-        <Route path={`${match.url}/:customerId/edit`} component={CustomerEdit} />
-        <Route path={`${match.url}/:customerId`} component={CustomerView} />
-      </Switch>
-  } else if (user && user.roles.find(role => role === 'customer')) {
-    return <Switch>
-        <Route path={`${match.url}/create/success`} component={ClientCreateSuccess} />
-        <Route path={`${match.url}/create`} component={CustomerCreate} />
-        <Route path={`${match.url}/:customerId/edit`} component={CustomerEdit} />
-        <Route path={`${match.url}/:customerId`} component={CustomerView} />
-      </Switch>
-  } else {
-    return null
-  }
-}
+const Customers = ({match, user}) =>
+  <Switch>
+    {user && user.roles.find(role => role === 'admin') &&
+      <Route path={`${match.url}`} exact component={CustomerList} />
+    }
+    <Route path={`${match.url}/create/success`} component={ClientCreateSuccess} />
+    <Route path={`${match.url}/create`} component={CustomerCreate} />
+    <Route path={`${match.url}/:customerId/edit`} component={CustomerEdit} />
+    <Route path={`${match.url}/:customerId`} component={CustomerView} />
+  </Switch>
 
 export default connect(mapStateToProps)(Customers)
