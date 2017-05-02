@@ -6,6 +6,7 @@ import {
 import thunk from 'redux-thunk'
 import {reducer as form} from 'redux-form'
 import {createSelector} from 'reselect'
+import {flatMap} from 'lodash'
 
 import apiMiddleware from './middleware/api'
 import app from '../modules/core/app-reducers'
@@ -131,8 +132,12 @@ export const selectors = {
   getAllVolunteers: state =>
     volunteerSelectors.getAll(state.volunteer.ids, state.entities),
   getOneVolunteer: state => id => volunteerSelectors.getOne(id, state.entities),
+  getAllDrivers: createSelector(
+    state => volunteerSelectors.getAll(state.volunteer.ids, state.entities),
+    volunteers => volunteers.filter(v => v.driver && v.status === 'Active')
+  ),
   loadingVolunteers: state => volunteerSelectors.loading(state.volunteer),
   loadVolunteersError: state => volunteerSelectors.loadError(state.volunteer),
   savingVolunteers: state => volunteerSelectors.saving(state.volunteer),
-  saveVolunteersError: state => volunteerSelectors.saveError(state.volunteer),
+  saveVolunteersError: state => volunteerSelectors.saveError(state.volunteer)
 }
