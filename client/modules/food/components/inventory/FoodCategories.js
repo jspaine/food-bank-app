@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import NewCategory from './NewCategory'
 import { selectors } from 'store'
-import { loadFoods, saveFood, deleteFood } from '../../food-category-reducer'
+import { loadFoods, saveFood, deleteFood, setSaveError } from '../../food-category-reducer'
 import { CALL_API } from '../../../../store/middleware/api'
 
 class FoodCategories extends Component {
@@ -14,7 +14,7 @@ class FoodCategories extends Component {
   onItemEdit = (_id, value) => {
     let foodCategoryToUpdate = _.find(this.props.foods, {_id})
 
-        //Don't do anything if it is the same value
+    //Don't do anything if it is the same value
     if (foodCategoryToUpdate.category === value.trim()) return
 
     foodCategoryToUpdate.category = value
@@ -33,6 +33,19 @@ class FoodCategories extends Component {
     } else {
       return (<tr><td className="text-center">No food categories yet.</td></tr>)
     }
+  }
+
+  createCategory = category => {
+    const trimmedCategoryName = category.trim()
+    if (this.doesCategoryExist(trimmedCategoryName)) {
+        this.props.setSaveError(`Category ${category} already exists`)
+    } else {
+        this.props.createCategory(trimmedCategoryName)
+    }
+  }
+
+  doesCategoryExist = name => {
+    return this.props.foods.some(category => category.category.toLowerCase() === name.toLowerCase())
   }
 
   render() {
@@ -55,7 +68,7 @@ class FoodCategories extends Component {
                 </div>
 
                 <div className="box-footer">
-                    <NewCategory createCategory={this.props.createCategory} />
+                    <NewCategory createCategory={this.createCategory} />
 
                     {this.props.foodCategory.saveError &&
                         <div className="text-center text-danger">
@@ -98,7 +111,8 @@ const mapDispatchToProps = dispatch => ({
     delete action[CALL_API].schema
     dispatch(action)
   },
-  deleteCategory: id => dispatch(deleteFood(id))
+  deleteCategory: id => dispatch(deleteFood(id)),
+  setSaveError: error => dispatch(setSaveError(error))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodCategories)
