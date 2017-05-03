@@ -33,11 +33,6 @@ export const deleteFood = id => ({
   }
 })
 
-export const setSaveError = error => ({
-  type: actions.SAVE_FAILURE,
-  error
-})
-
 export default crudReducer('foodCategory')
 
 export const selectors = {

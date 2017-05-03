@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import NewCategory from './NewCategory'
 import { selectors } from 'store'
-import { loadFoods, saveFood, deleteFood, setSaveError } from '../../food-category-reducer'
+import { loadFoods, saveFood, deleteFood } from '../../food-category-reducer'
 import { CALL_API } from '../../../../store/middleware/api'
 
 class FoodCategories extends Component {
@@ -36,12 +36,7 @@ class FoodCategories extends Component {
   }
 
   createCategory = category => {
-    const trimmedCategoryName = category.trim()
-    if (this.doesCategoryExist(trimmedCategoryName)) {
-        this.props.setSaveError(`Category ${category} already exists`)
-    } else {
-        this.props.createCategory(trimmedCategoryName)
-    }
+    this.props.createCategory(category.trim())
   }
 
   doesCategoryExist = name => {
@@ -68,7 +63,7 @@ class FoodCategories extends Component {
                 </div>
 
                 <div className="box-footer">
-                    <NewCategory createCategory={this.createCategory} />
+                    <NewCategory createCategory={this.createCategory} doesCategoryExist={this.doesCategoryExist}/>
 
                     {this.props.foodCategory.saveError &&
                         <div className="text-center text-danger">
@@ -111,8 +106,7 @@ const mapDispatchToProps = dispatch => ({
     delete action[CALL_API].schema
     dispatch(action)
   },
-  deleteCategory: id => dispatch(deleteFood(id)),
-  setSaveError: error => dispatch(setSaveError(error))
+  deleteCategory: id => dispatch(deleteFood(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodCategories)
