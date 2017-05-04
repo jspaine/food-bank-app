@@ -56,7 +56,8 @@ describe('Customer Api', function() {
         .send(user)
         .expect(res => {
           expect(res.body).to.be.an('object')
-          expect(res.body).to.have.property('message', 'Unique field already exists')
+          expect(res.body).to.have.property('error')
+          expect(res.body.error).to.have.property('message', 'Unique field already exists')
         })
         .expect(400)
     })
