@@ -1,5 +1,6 @@
 // have to import separately or user model will be imported and blow up
 import Customer from '../../models/customer'
+import {Questionnaire} from '../../models/questionnaire'
 import {createUserSession, createTestUser} from '../helpers'
 
 let User
@@ -11,11 +12,16 @@ describe('Customer Api', function() {
     User = require('../../models/user').default
     await Customer.find().remove()
     await User.find().remove()
+
+    await Questionnaire.find().remove()
+    const questionnaire = new Questionnaire({name: "Customers", identifier: "qCustomers"})
+    await questionnaire.save(err => {if (err) throw err})
   })
 
   afterEach(async function() {
     await Customer.find().remove()
     await User.find().remove()
+    await Questionnaire.find().remove()
   })
 
   after(async function() {
