@@ -67,39 +67,24 @@ class SignUp extends React.Component {
         loading={this.props.auth.fetching}
         error={this.props.auth.error}
       >
-        <FormGroup controlId="accountType">
-          <ControlLabel>Please select an account to create</ControlLabel>
+        <FormGroup>
+          <label>Please select an account to create</label>
           <div>
-            <FieldGroup
-              name="accountType"
-              type="radio"
-              label="Client"
-              value="customer"
-              checked={this.state.accountType === 'customer'}
-              onChange={this.onFieldChange}
-              required
-              inline
-            />
-            <FieldGroup
-              name="accountType"
-              type="radio"
-              label="Volunteer"
-              value="volunteer"
-              checked={this.state.accountType === 'volunteer'}
-              onChange={this.onFieldChange}
-              required
-              inline
-            />
-            <FieldGroup
-              name="accountType"
-              type="radio"
-              label="Donor"
-              value="donor"
-              checked={this.state.accountType === 'donor'}
-              onChange={this.onFieldChange}
-              required
-              inline
-            />
+            <label className="radio-inline">
+              <input type="radio" name="accountType" value="customer" onChange={this.onFieldChange} 
+                checked={this.state.accountType === 'customer'} required />
+              Client
+            </label>
+            <label className="radio-inline">
+              <input type="radio" name="accountType" value="volunteer" onChange={this.onFieldChange} 
+                checked={this.state.accountType === 'volunteer'} required />
+              Volunteer
+            </label>
+            <label className="radio-inline">
+              <input type="radio" name="accountType" value="donor" onChange={this.onFieldChange} 
+                checked={this.state.accountType === 'donor'} required />
+              Donor
+            </label>
           </div>
         </FormGroup>
         <FieldGroup
