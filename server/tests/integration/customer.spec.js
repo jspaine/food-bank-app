@@ -73,7 +73,8 @@ describe('Customer Api', function() {
       return request.get(`/api/customer/${user._id}`)
         .expect(res => {
           expect(res.body).to.be.an.object
-          expect(res.body).to.have.property('username', 'user')
+          expect(res.body).to.have.property('_id', user._id)
+          expect(res.body).to.have.property('email', 'user@test.com')
         })
         .expect(200)
     })
