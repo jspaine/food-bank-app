@@ -11,11 +11,15 @@ export default {
     let volunteer = new Volunteer(req.body)
     volunteer._id = req.user.id
 
-    // Update user's hasApplied property to restrict them from applying again
-    await User.findOneAndUpdate({_id: volunteer._id}, {$set: {hasApplied: true }})
+    try {
+      // Update user's hasApplied property to restrict them from applying again
+      await User.findOneAndUpdate({_id: volunteer._id}, {$set: {hasApplied: true }})
 
-    const savedVolunteer = await volunteer.save()
-    res.json(savedVolunteer)
+      const savedVolunteer = await volunteer.save()
+      res.json(savedVolunteer)
+    } catch (err) {
+      res.status(500).json({error: err})
+    }
   },
 
   /**

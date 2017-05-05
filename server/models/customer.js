@@ -13,6 +13,10 @@ const CustomerSchema = new Schema({
     type: Number,
     ref: 'User'
   },
+  username: {
+    type: String,
+    required: true
+  },
   firstName: {
     type: String,
     required: true
