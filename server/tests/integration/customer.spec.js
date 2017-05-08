@@ -1,24 +1,34 @@
+import {sortBy} from 'lodash'
 // have to import separately or user model will be imported and blow up
 import Customer from '../../models/customer'
+import Volunteer from '../../models/volunteer'
+import {Questionnaire} from '../../models/questionnaire'
 import {createUserSession, createTestUser} from '../helpers'
-
-let User
 
 describe('Customer Api', function() {
   before(async function() {
     await initDb()
     // can't import user before init db because of autoincrement plugin
-    User = require('../../models/user').default
+    const User = require('../../models/user').default
     await Customer.find().remove()
     await User.find().remove()
+
+    await Questionnaire.find().remove()
+    const qCustomers = new Questionnaire({name: "Customers", identifier: "qCustomers"})
+    await qCustomers.save(err => {if (err) throw err})
+    const qVolunteers = new Questionnaire({name: "Volunteers", identifier: "qVolunteers"})
+    await qVolunteers.save(err => {if (err) throw err})  
   })
 
   afterEach(async function() {
+    const User = require('../../models/user').default
     await Customer.find().remove()
+    await Volunteer.find().remove()
     await User.find().remove()
   })
 
   after(async function() {
+    await Questionnaire.find().remove()
     await resetDb()
   })
 
@@ -50,7 +60,8 @@ describe('Customer Api', function() {
         .send(user)
         .expect(res => {
           expect(res.body).to.be.an('object')
-          expect(res.body).to.have.property('message', 'Unique field already exists')
+          expect(res.body).to.have.property('error')
+          expect(res.body.error).to.have.property('message', 'Unique field already exists')
         })
         .expect(400)
     })
@@ -66,7 +77,8 @@ describe('Customer Api', function() {
       return request.get(`/api/customer/${user._id}`)
         .expect(res => {
           expect(res.body).to.be.an.object
-          expect(res.body).to.have.property('username', 'user')
+          expect(res.body).to.have.property('_id', user._id)
+          expect(res.body).to.have.property('email', 'user@test.com')
         })
         .expect(200)
     })
@@ -131,21 +143,29 @@ describe('Customer Api', function() {
   describe('Admin routes', function() {
     it('lists customers', async function() {
       const newAdmin = createTestUser('admin', 'admin', {roles: ['admin']})
-      const newCustomer = createTestUser('user', 'customer')
+      const newCustomer1 = createTestUser('customer1', 'customer')
+      const newCustomer2 = createTestUser('customer2', 'customer')
+
       const admin = await createUserSession(newAdmin)
-      const customer = await createUserSession(newCustomer)
+      const customer1 = await createUserSession(newCustomer1)
+      const customer2 = await createUserSession(newCustomer2)
 
       const adminReq = supertest.agent(admin.app)
-      const customerReq = supertest.agent(customer.app)
+      const customerReq1 = supertest.agent(customer1.app)
+      const customerReq2 = supertest.agent(customer2.app)
 
-      await customerReq.post('/api/customer')
-        .send(customer.user)
+      await customerReq1.post('/api/customer')
+        .send(customer1.user)      
+      await customerReq2.post('/api/customer')
+        .send(customer2.user)      
 
       return adminReq.get(`/api/admin/customers`)
         .expect(res => {
           expect(res.body).to.be.an.array
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].username).to.equal('user')
+          expect(res.body).to.have.lengthOf(2)
+          const sortedResults = sortBy(res.body, 'username')
+          expect(sortedResults[0].username).to.equal('customer1')
+          expect(sortedResults[1].username).to.equal('customer2')
         })
         .expect(200)
     })
@@ -186,8 +206,8 @@ describe('Customer Api', function() {
 
     it('assigns customers', async function() {
       const newAdmin = createTestUser('admin', 'admin', {roles: ['admin']})
-      const newCustomer = createTestUser('customer', 'customer')
-      const newVolunteer = createTestUser('driver', 'volunteer', {roles: ['volunteer', 'driver']})
+      const newCustomer = createTestUser('customer1', 'customer')
+      const newVolunteer = createTestUser('driver1', 'volunteer', {roles: ['volunteer', 'driver']})
 
       const admin = await createUserSession(newAdmin)
       const customer = await createUserSession(newCustomer)

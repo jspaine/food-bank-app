@@ -17,8 +17,20 @@ export default {
     // Update user's hasApplied property to restrict them from applying again
     await User.findOneAndUpdate({_id: customer._id}, {$set: {hasApplied: true }})
 
-    const savedCustomer = await customer.save()
-    res.json(savedCustomer)
+    try {
+      const savedCustomer = await customer.save()
+      res.json(savedCustomer)
+    } catch (error) {
+      // Check if it is a unique key error(11000)
+      if (error.code === 11000) {
+        const response = {
+          message: 'Unique field already exists', 
+        } 
+        return res.status(400).json({error: response})
+      } else {
+        return res.status(500).json(error)
+      }
+    }
 
     await mailer.send(config.mailer.to, 'A new client has applied.', 'create-customer-email')
   },
