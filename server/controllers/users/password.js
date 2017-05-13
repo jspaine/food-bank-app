@@ -11,6 +11,9 @@ import errorHandler from '../errors'
  * Forgot for reset password (forgot POST)
  */
 exports.forgot = function(req, res, next) {
+  if (!sendEmail) {
+    return res.status(500).json({message: "This site does not have email capability at this time. Please contact the site owner for assistance."})
+  }
   async.waterfall([
 
     // Generate random token

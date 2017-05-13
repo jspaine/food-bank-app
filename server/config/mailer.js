@@ -6,33 +6,38 @@ import sendpulse from 'sendpulse-api'
 import striptags from 'striptags'
 import config from './index.js'
 
-const sp_config = config.sendpulse
+let sendEmail = null
 
-sendpulse.init(sp_config.API_USER_ID, sp_config.API_SECRET, sp_config.TOKEN_STORAGE)
+if (config.sendpulse) {
+  const sp_config = config.sendpulse
 
-export const sendEmail = (recepientEmail, recepientName, subject, bodyHTML) => {
-  var message = {
-    "html" : bodyHTML,
-    "text" : striptags(bodyHTML, [], '\n'),
-    "subject" : subject,
-    "from" : {
-        "name" : sp_config.name,
-        "email" : sp_config.email
-    },
-    "to" : [ { 
-        "name" : recepientName,
-        "email" : recepientEmail
-    } ]
+  sendpulse.init(sp_config.API_USER_ID, sp_config.API_SECRET, sp_config.TOKEN_STORAGE)
+
+  sendEmail = (recepientEmail, recepientName, subject, bodyHTML) => {
+    var message = {
+      "html" : bodyHTML,
+      "text" : striptags(bodyHTML, [], '\n'),
+      "subject" : subject,
+      "from" : {
+          "name" : sp_config.name,
+          "email" : sp_config.email
+      },
+      "to" : [ { 
+          "name" : recepientName,
+          "email" : recepientEmail
+      } ]
+    }
+
+    return new Promise((resolve, reject) => {
+      sendpulse.smtpSendMail(sendpulseResponse => {
+        if (sendpulseResponse.result) resolve()
+        else reject (sendpulseResponse)
+      }, message)
+    })
   }
-
-  return new Promise((resolve, reject) => {
-    sendpulse.smtpSendMail(sendpulseResponse => {
-      if (sendpulseResponse.result) resolve()
-      else reject (sendpulseResponse)
-    }, message)
-  })
 }
 
+export {sendEmail}
 
 /**
  * Code for using sendgrid instead of sendpulse
