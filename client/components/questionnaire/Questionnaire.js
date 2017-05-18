@@ -8,7 +8,6 @@ import validate from '../../../common/validators'
 
 const Questionnaire = ({
   model,
-  foods,
   questionnaire,
   loading,
   onSubmit
