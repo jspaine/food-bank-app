@@ -51,7 +51,7 @@ module.exports = merge(common, {
         proxyTimeout: 3000
       }
     },
-    contentBase: '/dist',
+    contentBase: resolve(__dirname, 'public'),
     port: 8080,
     historyApiFallback: {
       index: 'http://localhost:8080/'

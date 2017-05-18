@@ -49,10 +49,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([{
       from: resolve(__dirname, 'public', 'media'),
-      to: resolve(__dirname, 'public', 'dist', 'media')
-    }, {
-      from: resolve(__dirname, 'client', 'modules', 'core', 'img'),
-      to: resolve(__dirname, 'public', 'dist', 'media')
+      to: resolve(__dirname, 'dist', 'public', 'media')
     }]),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

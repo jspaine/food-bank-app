@@ -11,7 +11,8 @@
   "scripts": {
     "heroku-postinstall": "gulp build",
     "dev": "gulp watch",
-    "start": "node dist/server/server.js",
+    "build": "gulp build",
+    "start": "cd dist && node server/server.js",
     "lint": "npm run lint:server; npm run lint:client",
     "lint:server": "eslint server",
     "lint:client": "eslint client",
