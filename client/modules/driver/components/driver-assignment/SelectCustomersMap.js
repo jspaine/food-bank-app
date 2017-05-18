@@ -1,23 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {noop} from 'lodash'
-import {Marker} from 'react-google-maps'
-import MarkerClusterer from 'react-google-maps/lib/addons/MarkerClusterer'
 
 import selectors from '../../../../store/selectors'
 import {toggleCustomer, selectCluster} from '../../reducers/assignment'
 import Map from '../Map'
-
-import pinkMarker from '../../images/gm-marker-pink.png'
-import blueMarker from '../../images/gm-marker-blue.png'
-import driverMarker from '../../images/driver-marker.png'
-import solidMarker from '../../images/client-marker.png'
+import Markers from './Markers'
+import DrawSelection from './DrawSelection'
 
 const mapStateToProps = state => ({
   settings: selectors.settings.getSettings(state),
-  customers: selectors.delivery.assignment.getFilteredCustomers(state),
-  isSelected: selectors.delivery.assignment.isCustomerSelected(state),
-  selectedCustomerIds: selectors.delivery.assignment.getSelectedCustomerIds(state),
   route: selectors.delivery.route.getRoute(state)
 })
 
@@ -27,24 +19,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(selectCluster(cluster, customers, selectedCustomerIds))
 })
 
-const mergeProps = (stateProps, dispatchProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  selectCluster: cluster => dispatchProps.selectCluster(
-    cluster, stateProps.customers, stateProps.selectedCustomerIds)
-})
-
 const loadingElement = (
   <div className="overlay"><i className="fa fa-refresh fa-spin"></i></div>
 )
 
 const SelectCustomersMap = ({
   settings,
-  customers,
-  isSelected,
-  route,
-  toggleCustomer,
-  selectCluster
+  route
 }) =>
   settings ?
     <div>
@@ -59,49 +40,19 @@ const SelectCustomersMap = ({
         route={route}
         defaultCenter={settings.location}
       >
-        <MarkerClusterer
-          averageCenter
-          enableRetinaIcons
-          gridSize={60}
-          zoomOnClick={false}
-          onClick={selectCluster}
-        >
-          {!route && customers && customers.map(customer =>
-            customer.location ?
-              <Marker
-                key={customer.id}
-                icon={isSelected(customer.id) ? pinkMarker : blueMarker}
-                position={customer.location}
-                onClick={toggleCustomer(customer.id)}
-              /> :
-              null
-          )}
-        </MarkerClusterer>
-        <Marker icon={solidMarker} position={settings.location} />
+        <Markers />
+        {!route && <DrawSelection />}
       </Map>
     </div> :
     null
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(SelectCustomersMap)
+export default connect(mapStateToProps, mapDispatchToProps)(SelectCustomersMap)
 
 function getGoogleMapURL(settings) {
   const {gmapsApiKey, gmapsClientId} = settings
-  const baseUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&'
+  const baseUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing&'
   return gmapsClientId ?
     `${baseUrl}id=${gmapsClientId}` :
     `${baseUrl}key=${gmapsApiKey}`
 }
 
-// cluster => {
-//             console.log('cluster', cluster)
-//             {/*console.log('cluster.isMarkerInClusterBounds',
-//             customers.filter(customer =>
-//               cluster.isMarkerInClusterBounds({
-//                 getPosition: function() {return {lat: 51.48, lng: -3.15}}
-//               })
-//             )*/}
-
-//             // get {id, location} from customers array
-//             // filter by in bounds
-//             // toggle select remaining customers
-//           }}
