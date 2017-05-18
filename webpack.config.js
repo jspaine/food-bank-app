@@ -48,8 +48,8 @@ module.exports = {
       inject: 'body'
     }),
     new CopyWebpackPlugin([{
-      from: resolve(__dirname, 'public', 'media'),
-      to: resolve(__dirname, 'dist', 'public', 'media')
+      from: resolve(__dirname, 'assets'),
+      to: resolve(__dirname, 'dist', 'assets')
     }]),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
