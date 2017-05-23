@@ -114,6 +114,12 @@ export default function() {
     })
   })
 
+  if (process.env.NODE_ENV === 'production') {
+    app.use(function(req, res) {
+      res.sendFile(path.resolve('./dist/client/index.html'))
+    })
+  }
+
   // Return Express server instance
   return app
 }
