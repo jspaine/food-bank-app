@@ -13,7 +13,7 @@ module.exports = merge(common, {
     ]
   },
   output: {
-    path: resolve(__dirname, 'dist', 'assets'),
+    path: resolve(__dirname, 'dist', 'client'),
     filename: '[name].js',
     publicPath: '/'
   },

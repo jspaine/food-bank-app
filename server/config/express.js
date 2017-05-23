@@ -95,8 +95,8 @@ export default function() {
   app.use('/api', apiRoutes(API_DELAY, API_FAILURE_RATE))
 
   // Setting the static folder
-  const static_assets_path = (process.env.NODE_ENV === 'production') ? './dist/client' : './assets'
-  app.use(express.static(path.resolve(static_assets_path)))
+  if (process.env.NODE_ENV === 'production')
+    app.use(express.static(path.resolve('./dist/client')))
 
   // Error handler
   app.use(function(err, req, res, next) {
@@ -112,11 +112,6 @@ export default function() {
     res.status(error.status).json({
       message: error.message
     })
-  })
-
-  // let the client handle it
-  app.use(function(req, res) {
-    res.sendFile(path.resolve('./dist/client/index.html'))
   })
 
   // Return Express server instance
