@@ -37,11 +37,6 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, 'client', 'index.html'),
       inject: 'body'
