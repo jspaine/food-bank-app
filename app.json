@@ -7,6 +7,26 @@
     "SECRET": {
       "description": "Session secret",
       "generator": "secret"
+    },
+    "GOOGLE_CLIENT_ID": {
+      "description": "Google+ Client ID",
+      "value": ""
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "description": "Google+ Client Secret",
+      "value": ""
+    },
+    "SENDPULSE_USER_ID": {
+      "description": "Sendpulse User ID",
+      "value": ""
+    },
+    "SENDPULSE_SECRET": {
+      "description": "Sendpulse Secret",
+      "value": ""
+    },
+    "SENDPULSE_EMAIL": {
+      "description": "Sendpulse Email Address",
+      "value": ""
     }
   }
 }
