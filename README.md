@@ -1,5 +1,6 @@
 # This branch is outdated
 Please switch to the staging branch for the latest version
+---
 
 This repository is for the Pantry-for-Good application designed by Open Source for Good Contributors at [freeCodeCamp](http://www.freecodecamp.com). If you'd like to contribute, the [contributing guide](CONTRIBUTING.md) explains the git workflow and the [developers guide](https://github.com/freeCodeCamp/pantry-for-good/wiki/developer's-guide) gives an overview of how the app works.
 
