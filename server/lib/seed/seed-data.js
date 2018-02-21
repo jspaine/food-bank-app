@@ -94,7 +94,7 @@ export const getSettingsFields = () => {
 export const pages = [{
   identifier: pageIdentifiers.HOME,
   title: 'Home',
-  body: '<p><span class="ql-placeholder-content" data-id="organization" data-label="Foodbank Name"></span> is an application for managing food bank operations created as part of the Open Source for Good project at <a href="https://www.freecodecamp.org/">freeCodeCamp</a>.</p><p>The content of this page and the site branding can be changed by an administrator on the <a href="/settings">settings</a> page.</p>'
+  body: '<p><span class="ql-placeholder-content" data-id="organization" data-label="Foodbank Name"></span> is an application for managing food bank operations created as part of the Open Source for Good project at <a href="https://www.freecodecamp.org/">freeCodeCamp</a>.</p><p>The content of this page and the site branding can be changed by an administrator on the <a href="/settings">settings</a> page.</p><p><br></p>  <p><strong>Login details:</strong></p><p><br></p><p>All passwords are "password"</p><p><br></p><ul><li>Admin email: admin@example.com</li><li>Customer emails: customer1@example.com</li><li>Donor emails: donor1@example.com</li><li>Volunteer emails: volunteer1@example.com</li><li>Driver emails: driver1@example.com</li></ul><p><br></p><p>eg. email: customer1@example.com, password: password</p>'
 }, {
   identifier: pageIdentifiers.CUSTOMER,
   title: 'Customers',

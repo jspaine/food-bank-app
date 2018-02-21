@@ -43,7 +43,7 @@ export default function(io) {
   app.set('sharedSession', sharedSession)
 
   // call with true or delete db to seed
-  seed(process.env.NODE_ENV, false)
+  seed('development', false)
 
   // force https
   if (process.env.NODE_ENV === 'production') {

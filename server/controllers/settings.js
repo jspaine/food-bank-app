@@ -41,6 +41,7 @@ export default {
     const settings = {
       ...req.body,
       location,
+      ...(process.env.GMAPS_API_KEY ? {gmapsApiKey: process.env.GMAPS_API_KEY} : {})
     }
 
     const count = await Settings.count()
