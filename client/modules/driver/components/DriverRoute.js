@@ -108,7 +108,6 @@ class DriverRoute extends Component {
                       className="btn btn-default"
                       href={this.getGoogleUrl()}
                       target="_blank"
-                      rel="noopener noreferrer"
                     >
                       Show on Google
                     </a>
